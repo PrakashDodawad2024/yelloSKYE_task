@@ -5,10 +5,16 @@ import 'package:yelloskye_task/utils/colors.dart';
 import 'package:yelloskye_task/view/auth/forgot_password_screen.dart';
 import 'package:yelloskye_task/view/auth/signup_screen.dart';
 
-class LoginScreen extends StatelessWidget {
-  final AuthController authController = Get.find<AuthController>();
-
+class LoginScreen extends StatefulWidget {
   LoginScreen({super.key});
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  final AuthController authController = Get.find<AuthController>();
+  bool _obscurePassword = true;
 
   @override
   Widget build(BuildContext context) {
@@ -43,10 +49,22 @@ class LoginScreen extends StatelessWidget {
               const SizedBox(height: 20),
               TextField(
                 controller: authController.passwordController,
-                obscureText: true,
-                decoration: const InputDecoration(
+                obscureText: _obscurePassword,
+                decoration: InputDecoration(
                   labelText: 'Password',
-                  prefixIcon: Icon(Icons.lock),
+                  prefixIcon: const Icon(Icons.lock),
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      _obscurePassword
+                          ? Icons.visibility
+                          : Icons.visibility_off,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        _obscurePassword = !_obscurePassword;
+                      });
+                    },
+                  ),
                 ),
               ),
               const SizedBox(height: 10),
@@ -71,8 +89,7 @@ class LoginScreen extends StatelessWidget {
                                 height: 20,
                                 width: 20,
                                 child: CircularProgressIndicator(
-                                  color: Colors.white,
-                                )),
+                                    color: Colors.white)),
                           )
                         : const Text('Login'),
                   )),

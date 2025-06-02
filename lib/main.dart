@@ -118,7 +118,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-//
 class ProjectBinding implements Bindings {
   @override
   void dependencies() {

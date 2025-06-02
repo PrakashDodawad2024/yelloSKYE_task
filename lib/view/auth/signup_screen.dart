@@ -4,10 +4,17 @@ import 'package:yelloskye_task/controllers/auth_controller.dart';
 import 'package:yelloskye_task/utils/colors.dart';
 import 'package:yelloskye_task/view/auth/login_screen.dart';
 
-class SignupScreen extends StatelessWidget {
-  final AuthController authController = Get.find<AuthController>();
-
+class SignupScreen extends StatefulWidget {
   SignupScreen({super.key});
+
+  @override
+  State<SignupScreen> createState() => _SignupScreenState();
+}
+
+class _SignupScreenState extends State<SignupScreen> {
+  final AuthController authController = Get.find<AuthController>();
+  bool _obscurePassword = true;
+  bool _obscureConfirmPassword = true;
 
   @override
   Widget build(BuildContext context) {
@@ -42,19 +49,43 @@ class SignupScreen extends StatelessWidget {
               const SizedBox(height: 20),
               TextField(
                 controller: authController.passwordController,
-                obscureText: true,
-                decoration: const InputDecoration(
+                obscureText: _obscurePassword,
+                decoration: InputDecoration(
                   labelText: 'Password',
-                  prefixIcon: Icon(Icons.lock),
+                  prefixIcon: const Icon(Icons.lock),
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      _obscurePassword
+                          ? Icons.visibility
+                          : Icons.visibility_off,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        _obscurePassword = !_obscurePassword;
+                      });
+                    },
+                  ),
                 ),
               ),
               const SizedBox(height: 20),
               TextField(
                 controller: authController.confirmPasswordController,
-                obscureText: true,
-                decoration: const InputDecoration(
+                obscureText: _obscureConfirmPassword,
+                decoration: InputDecoration(
                   labelText: 'Confirm Password',
-                  prefixIcon: Icon(Icons.lock),
+                  prefixIcon: const Icon(Icons.lock),
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      _obscureConfirmPassword
+                          ? Icons.visibility
+                          : Icons.visibility_off,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        _obscureConfirmPassword = !_obscureConfirmPassword;
+                      });
+                    },
+                  ),
                 ),
               ),
               const SizedBox(height: 30),
@@ -69,8 +100,7 @@ class SignupScreen extends StatelessWidget {
                                 height: 20,
                                 width: 20,
                                 child: CircularProgressIndicator(
-                                  color: Colors.white,
-                                )),
+                                    color: Colors.white)),
                           )
                         : const Text('Sign Up'),
                   )),
