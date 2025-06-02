@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1018881351612",
+    "project_id": "fir-3b6a5",
+    "storage_bucket": "fir-3b6a5.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1018881351612:android:51a8f02e813b1e360cd5b9",
+        "android_client_info": {
+          "package_name": "com.example.flexfilms"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHze7LeN0TbfWa32A6wBkabv288X-coLQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
